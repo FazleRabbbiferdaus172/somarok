@@ -6,11 +6,11 @@ import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import BookmarkRemoveIcon from '@mui/icons-material/BookmarkRemove';
 function App() {
   function handleAddBookmark(ev) {
-    console.log('Add bookmark');
+    console.log(`Add bookmark @ ${ev.clientX}, ${ev.clientY}`);
   }
 
   function handleRemoveBookmark(ev) {
-     console.log('Remove bookmark');    
+     console.log(`Remove bookmark @ ${ev.clientX}, ${ev.clientY}`);    
   }
   return (
     <Container fixed>
