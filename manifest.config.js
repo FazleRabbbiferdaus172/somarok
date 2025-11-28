@@ -9,6 +9,7 @@ export default defineManifest({
     48: 'public/logo.png',
   },
   permissions: [
+    "storage"
   ],
   action: {
     default_icon: {

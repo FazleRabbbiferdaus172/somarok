@@ -7,20 +7,23 @@ import BookmarkRemoveIcon from '@mui/icons-material/BookmarkRemove';
 function App() {
   function handleAddBookmark(ev) {
     console.log(`Add bookmark @ ${ev.clientX}, ${ev.clientY}`);
+    chrome.storage.local.set({ bookmark1: {x: ev.clientX, y: ev.clientY } }).then(() => {
+      console.log("Value is set");
+    });
   }
 
   function handleRemoveBookmark(ev) {
-     console.log(`Remove bookmark @ ${ev.clientX}, ${ev.clientY}`);    
+    console.log(`Remove bookmark @ ${ev.clientX}, ${ev.clientY}`);
   }
   return (
     <Container fixed>
-        <Box sx={{ bgcolor: '#cfe8fc', height: '10vh', weidth: '2vw' }}>
-            <IconButton>
-              <BookmarkAddIcon onClick={(ev) => handleAddBookmark(ev)}/>
-              <BookmarkRemoveIcon onClick={(ev) => handleRemoveBookmark(ev)}/>
-            </IconButton>
-        </Box>
-      </Container>
+      <Box sx={{ bgcolor: '#cfe8fc', height: '10vh', weidth: '2vw' }}>
+        <IconButton>
+          <BookmarkAddIcon onClick={(ev) => handleAddBookmark(ev)} />
+          <BookmarkRemoveIcon onClick={(ev) => handleRemoveBookmark(ev)} />
+        </IconButton>
+      </Box>
+    </Container>
   )
 }
 
