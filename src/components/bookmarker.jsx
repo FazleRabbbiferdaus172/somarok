@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { use, useState } from 'react'
 import bookmarker from '@/assets/bookmark.svg'
 
 export default function Bookmarker(props) {
-
+    const [color, setColor] = useState('red');
   return (
     <>
-        <img src={bookmarker} className="logo" alt="Vite logo" />
+        <img src={bookmarker} className="logo" alt="Vite logo" style={{'color': color}}/>
     </>
   )
 }
