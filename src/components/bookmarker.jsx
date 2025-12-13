@@ -7,6 +7,9 @@ export default function Bookmarker(props) {
   return (
     <>
         <img src={bookmarker} className="logo" alt="Vite logo" style={{'color': color}}/>
+        {canremove ?
+        <button>Remove</button> : <></>
+        }
     </>
   )
 }
