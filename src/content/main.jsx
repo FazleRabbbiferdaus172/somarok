@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { StrictMode, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 let allBookmarks = [];
 chrome.storage.local.get(["bookmark1"]).then((result) => {
@@ -17,7 +17,7 @@ let isBookMarkAddActive = false;
 let isBookMarkRemoveActive = false;
 
 document.addEventListener("click", function (ev) {
-  const values = {location: window.location.href, xposition: ev.clientX, yposiiton: ev.clientY};
+  const values = { location: window.location.href, xposition: ev.clientX, yposiiton: ev.clientY };
   if (isBookMarkAddActive) {
     chrome.storage.local.set({ bookmark1: values });
   }
@@ -28,6 +28,15 @@ document.addEventListener("click", function (ev) {
 
 
 export default function App() {
+  useEffect(() => {
+    chrome.storage.local.get(["allBookmarks"]).then((result) => {
+      if (result === undefined) {
+        allBookmarks = [];
+      } else {
+        allBookmarks = result.allBookmarks;
+      }
+    });
+  }, []);
   return (
     <div>
       <h1>Content Script Active</h1>
