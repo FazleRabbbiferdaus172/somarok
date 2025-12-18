@@ -1,6 +1,7 @@
 import { StrictMode, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
-import {Bookmarker} from '@/components/bookmarker.jsx'
+import App from '@/content/views/App.jsx'
+
 let allBookmarks = [];
 chrome.storage.local.get(["bookmark1"]).then((result) => {
   console.log("Value is " + JSON.stringify(result.bookmark1));
@@ -27,29 +28,6 @@ document.addEventListener("click", function (ev) {
   }
 });
 
-
-export default function App() {
-  useEffect(() => {
-    let allBookmarks = [];
-    chrome.storage.local.get(["allBookmarks"]).then((result) => {
-      if (result === undefined) {
-        allBookmarks = [];
-      } else {
-        allBookmarks = result.allBookmarks;
-      }
-    });
-      let bookmarkerList = [];
-      allBookmarks.forEach((bookmark) => {
-        bookmarkerList.push(<Bookmarker key={bookmark.xposition} xposition={bookmark.xposition} yposiiton={bookmark.yposition} location={bookmark.location}/>);
-      }
-      );
-  }, []);
-  return (
-    <div>
-      {bookmarkerList}
-    </div>
-  )
-}
 
 
 // createRoot(document.getElementsByTagName('body')[0]).render(
