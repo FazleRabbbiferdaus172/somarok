@@ -1,4 +1,3 @@
-import { StrictMode, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from '@/content/views/App.jsx'
 

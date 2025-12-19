@@ -1,3 +1,4 @@
+import { StrictMode, useEffect } from 'react'
 import {Bookmarker} from '@/components/bookmarker.jsx'
 export default function App() {
   useEffect(() => {
