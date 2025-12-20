@@ -2,6 +2,18 @@ import { createRoot } from 'react-dom/client'
 import App from '@/content/views/App.jsx'
 
 let allBookmarks = [];
+let operation = null;
+
+const messageListener = (message, sender, sendResponse) => {
+  if (message.type === "SetAdd") {
+    operation = 'add';
+  }
+  else if (message.type === "SetRemove") {
+    operation = 'remove';
+  }
+}
+chrome.runtime.onMessage.addListener(messageListener);
+
 chrome.storage.local.get(["bookmark1"]).then((result) => {
   console.log("Value is " + JSON.stringify(result.bookmark1));
 });
