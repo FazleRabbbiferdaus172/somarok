@@ -1,6 +1,6 @@
-# React + Vite + CRXJS
+# Somarok
 
-This template helps you quickly start developing Chrome extensions with React and Vite. It includes the CRXJS Vite plugin for seamless Chrome extension development.
+R&D project.
 
 ## Features
 
