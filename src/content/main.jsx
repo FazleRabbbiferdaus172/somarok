@@ -1,4 +1,4 @@
-import { createRoot } from 'react-dom/client'
+import { createRoot, StrictMode } from 'react-dom/client'
 import App from '@/content/views/App.jsx'
 
 let allBookmarks = [];
@@ -29,20 +29,18 @@ chrome.storage.local.get(["allBookmarks"]).then((result) => {
 let isBookMarkAddActive = false;
 let isBookMarkRemoveActive = false;
 
-document.addEventListener("click", function (ev) {
-  const values = { location: window.location.href, xposition: ev.clientX, yposiiton: ev.clientY };
-  if (isBookMarkAddActive) {
-    chrome.storage.local.set({ bookmark1: values });
-  }
-  else if (isBookMarkRemoveActive) {
-    chrome.storage.local.remove("bookmark1");
-  }
-});
+// document.addEventListener("click", function (ev) {
+//   const values = { location: window.location.href, xposition: ev.clientX, yposiiton: ev.clientY };
+//   if (isBookMarkAddActive) {
+//     chrome.storage.local.set({ bookmark1: values });
+//   }
+//   else if (isBookMarkRemoveActive) {
+//     chrome.storage.local.remove("bookmark1");
+//   }
+// });
 
 
 
-// createRoot(document.getElementsByTagName('body')[0]).render(
-//   <StrictMode>
-//     <App />
-//   </StrictMode>,
-// )
+createRoot(document.getElementsByTagName('body')[0]).render(
+      <App />
+)
