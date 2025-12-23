@@ -6,7 +6,7 @@ export default function Bookmarker(props) {
     const [canremove, setCanremove] = useState(false);
   return (
     <>
-        <img src={bookmarker} className="logo" alt="Vite logo" style={{'color': color}}/>
+        <img src={bookmarker} className="logo" alt="Vite logo" style={{'color': color}} width="100" height="100"/>
         {canremove ?
         <button>Remove</button> : <></>
         }
