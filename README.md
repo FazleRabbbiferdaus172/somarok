@@ -1,6 +1,6 @@
 # Somarok
 
-R&D project.
+R&D project. stores bookmaarks
 
 ## Features
 
