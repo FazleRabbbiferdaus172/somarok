@@ -15,9 +15,9 @@ export default function App() {
       } else {
         allBookmarks.push(result[storageKey]);
       }
-      debugger;
       allBookmarks.forEach((bookmark) => {
-        bookmarkerList.push(<Bookmarker key={bookmark.xposition} xposition={bookmark.xposition} yposiiton={bookmark.yposition} location={bookmark.location} />);
+        // Todo: fix "yposiiton" typo issue later
+        bookmarkerList.push(<Bookmarker key={bookmark.xposition} xposition={bookmark.xposition} yposition={bookmark.yposiiton} location={bookmark.location} />);
       }
       );
       setbookmarkerList(bookmarkerList)

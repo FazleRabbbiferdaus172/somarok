@@ -39,8 +39,10 @@ let isBookMarkRemoveActive = false;
 //   }
 // });
 
+const container = document.createElement('div')
+container.id = 'somarok-extension-container'
+document.body.appendChild(container)
 
-
-createRoot(document.getElementsByTagName('body')[0]).render(
+createRoot(container).render(
       <App />
 )
