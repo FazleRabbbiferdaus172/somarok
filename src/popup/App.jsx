@@ -5,6 +5,7 @@ import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import BookmarkRemoveIcon from '@mui/icons-material/BookmarkRemove';
+
 function App() {
   const [isBookMarkAddActive, setIsBookMarkAddActive] = useState(false);
   const [isBookMarkRemoveActive, setIsBookMarkRemoveActive] = useState(false);
@@ -13,17 +14,44 @@ function App() {
     setIsBookMarkAddActive(!isBookMarkAddActive);
   }
 
+  async function getTab() {
+    let queryOptions = { active: true, currentWindow: true };
+    let [tab] = await chrome.tabs.query(queryOptions);
+    return tab;
+  }
+
+  async function sendSetAddMessage(operation) {
+    const tab = await getTab();
+    chrome.tabs.sendMessage(tab.id, { type: operation });
+  }
+
   function toggleBookmarkRemove() {
     setIsBookMarkRemoveActive(!isBookMarkRemoveActive);
   }
+  
+  function lookForOperation(target) {
+    let operation = target.id;
+    while(operation !== 'add' && operation !== 'remove') {
+      if (target.parentElement === null) {
+        operation = null;
+        break;
+      }
+      target = target.parentElement;
+      operation = target.id;
+    }
+    return operation;
+  }
 
   function toggleBothBookmarkActions(ev) {
-    if (ev.target.id === 'add') {
+    let target = lookForOperation(ev.target);
+    if (target === 'add') {
       toggleBookmarkAdd();
+      sendSetAddMessage("SetAdd");
       setIsBookMarkRemoveActive(false);
     }
-    else if (ev.target.id === 'remove') {
+    else if (target === 'remove') {
       toggleBookmarkRemove();
+      sendSetAddMessage("SetRemove");
       setIsBookMarkAddActive(false);
     }
   }

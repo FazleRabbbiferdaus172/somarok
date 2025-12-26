@@ -9,7 +9,8 @@ export default defineManifest({
     48: 'public/logo.png',
   },
   permissions: [
-    "storage"
+    "storage",
+    "activeTab"
   ],
   action: {
     default_icon: {
