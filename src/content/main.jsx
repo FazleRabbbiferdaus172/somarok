@@ -13,6 +13,10 @@ const messageListener = (message, sender, sendResponse) => {
         // allBookmarks.push(values);
         chrome.storage.local.set({ bookmark1: values });
         operation = null;
+        chrome.runtime.sendMessage({
+          type: "somarok-updated",
+          payload: currentCode,
+        });
       }
     })
   }

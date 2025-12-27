@@ -2,6 +2,7 @@ import { StrictMode, useEffect, useState } from 'react'
 import Bookmarker from '@/components/bookmarker.jsx'
 export default function App() {
   const [bookmarkerState, setbookmarkerList] = useState([]);
+  const [somarokState, setSomarokState] = useState(0);
 
 
   useEffect(() => {
@@ -23,6 +24,21 @@ export default function App() {
       setbookmarkerList(bookmarkerList)
     }
     getDataFromStorage(bookmarkerState);
+  }, [somarokState]);
+
+  useEffect(() => {
+    const handleStorageChange = (changes, area) => {
+      if (area === 'local' && changes.bookmark1) {
+        // changes.bookmark1.newValue contains the data you just saved
+        setSomarokState(prev => prev + 1);
+      }
+    };
+
+    chrome.storage.onChanged.addListener(handleStorageChange);
+
+    return () => {
+      chrome.storage.onChanged.removeListener(handleStorageChange);
+    };
   }, []);
 
   return (
