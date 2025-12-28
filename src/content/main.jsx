@@ -9,13 +9,7 @@ const messageListener = (message, sender, sendResponse) => {
     document.addEventListener("click", async function (ev) {
       const values = { location: window.location.href, xposition: ev.pageX, yposiiton: ev.pageY };
       if (operation === 'add') {
-        // allBookmarks.push(values);
         chrome.storage.local.set({ bookmark1: values });
-        operation = null;
-        chrome.runtime.sendMessage({
-          type: "somarok-updated",
-          payload: currentCode,
-        });
       }
     })
   }
