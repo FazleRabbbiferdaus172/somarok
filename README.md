@@ -2,13 +2,6 @@
 
 R&D project. stores bookmaarks
 
-## Features
-
-- React with modern syntax
-- Vite build tool
-- CRXJS Vite plugin integration
-- Chrome extension manifest configuration
-
 ## Quick Start
 
 1. Install dependencies:
