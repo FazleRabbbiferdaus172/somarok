@@ -4,6 +4,9 @@ export default function App() {
   const [bookmarkerState, setbookmarkerList] = useState([]);
   const [somarokState, setSomarokState] = useState(0);
 
+  function handleRemoveBookmark(xposition, yposiiton, location) {
+    console.log("Removing bookmark at ", xposition, yposiiton, location);
+  }
 
   useEffect(() => {
     const getDataFromStorage = async function () {
@@ -19,7 +22,7 @@ export default function App() {
       allBookmarks.forEach((bookmark) => {
         // Todo: fix "yposiiton" typo issue later
         if (window.location.href === bookmark.location) { 
-          bookmarkerList.push(<Bookmarker key={bookmark.xposition} xposition={bookmark.xposition} yposition={bookmark.yposiiton} location={bookmark.location} />); 
+          bookmarkerList.push(<Bookmarker key={bookmark.xposition} xposition={bookmark.xposition} yposition={bookmark.yposiiton} location={bookmark.location} onRemove={handleRemoveBookmark}/>); 
         }
       }
       );
