@@ -1,5 +1,6 @@
-import { StrictMode, useEffect, useState } from 'react'
-import Bookmarker from '@/components/bookmarker.jsx'
+import { StrictMode, useEffect, useState } from 'react';
+import Bookmarker from '@/components/bookmarker.jsx';
+
 export default function App() {
   const [bookmarkerState, setbookmarkerList] = useState([]);
   const [somarokState, setSomarokState] = useState(0);
@@ -21,8 +22,8 @@ export default function App() {
       }
       allBookmarks.forEach((bookmark) => {
         // Todo: fix "yposiiton" typo issue later
-        if (window.location.href === bookmark.location) { 
-          bookmarkerList.push(<Bookmarker key={bookmark.xposition} xposition={bookmark.xposition} yposition={bookmark.yposiiton} location={bookmark.location} onRemove={handleRemoveBookmark}/>); 
+        if (window.location.href === bookmark.location) {
+          bookmarkerList.push(<Bookmarker key={bookmark.xposition} xposition={bookmark.xposition} yposition={bookmark.yposiiton} location={bookmark.location} onRemove={handleRemoveBookmark} />);
         }
       }
       );
