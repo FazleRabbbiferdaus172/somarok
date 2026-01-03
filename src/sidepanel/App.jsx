@@ -1,4 +1,3 @@
-import { StrictMode, useEffect, useState } from 'react';
 import crxLogo from '@/assets/crx.svg'
 import reactLogo from '@/assets/react.svg'
 import viteLogo from '@/assets/vite.svg'

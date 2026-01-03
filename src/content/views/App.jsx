@@ -15,6 +15,9 @@ export default function App() {
       let bookmarkerList = [];
       const storageKey = "bookmark1";
       const result = await chrome.storage.local.get([storageKey]);
+      const storageKey_location = window.location.href;
+      const location_somarok = await chrome.storage.local.get([storageKey_location]);
+      console.log("Location somarok: ", location_somarok);
       if (result[storageKey] === undefined) {
         allBookmarks = [];
       } else {

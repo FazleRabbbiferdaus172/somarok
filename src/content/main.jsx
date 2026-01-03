@@ -7,9 +7,12 @@ const messageListener = (message, sender, sendResponse) => {
   if (message.type === "SetAdd") {
     operation = 'add';
     document.addEventListener("click", async function (ev) {
-      const values = { location: window.location.href, xposition: ev.pageX, yposiiton: ev.pageY };
+      const location = window.location.href;
+      const cords = { xposition: ev.pageX, yposiiton: ev.pageY };
+      const values = { location: location, xposition: ev.pageX, yposiiton: ev.pageY };
       if (operation === 'add') {
         chrome.storage.local.set({ bookmark1: values });
+        chrome.storage.local.set({ [location]: [cords] });
       }
     })
   }
