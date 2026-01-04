@@ -11,8 +11,11 @@ const messageListener = (message, sender, sendResponse) => {
       const cords = { xposition: ev.pageX, yposiiton: ev.pageY };
       const values = { location: location, xposition: ev.pageX, yposiiton: ev.pageY };
       if (operation === 'add') {
-        chrome.storage.local.set({ bookmark1: values });
-        chrome.storage.local.set({ [location]: [cords] });
+        await chrome.storage.local.set({ bookmark1: values });
+        const current_somarok = await chrome.storage.local.get([location]);
+        current_somarok[location] = current_somarok[location] || [];
+        current_somarok[location].push(cords);
+        await chrome.storage.local.set({ [location]: current_somarok[location] });
       }
     })
   }
