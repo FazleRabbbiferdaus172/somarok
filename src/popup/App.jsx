@@ -71,7 +71,7 @@ function App() {
       allBookmarks.forEach((bookmark) => {
         // Todo: fix "yposiiton" typo issue later
         if (window.location.href === bookmark.location) {
-          bookmarkerList.push(<Bookmarker key={bookmark.xposition} xposition={bookmark.xposition} yposition={bookmark.yposiiton} location={bookmark.location} onRemove={handleRemoveBookmark} />);
+          bookmarkerList.push(<li> {bookmark.location} - {bookmark.xposition} - {bookmark.yposiiton}</li>);
         }
       }
       );
@@ -91,6 +91,11 @@ function App() {
             <BookmarkRemoveIcon />
           </div>
         </IconButton>
+      </Box>
+      <Box sx={{ bgcolor: '#90c9f8ff', weidth: '2vw' }}>
+        <ul>
+          {bookmarkerState}
+        </ul>
       </Box>
     </Container>
   )
