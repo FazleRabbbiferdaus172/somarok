@@ -1,6 +1,6 @@
 # Somarok
 
-R&D project. stores bookmaarks
+R&D project. Stores bookmarks inside a web version of book or any html page.
 
 ## Quick Start
 
