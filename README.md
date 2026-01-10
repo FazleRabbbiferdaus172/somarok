@@ -2,6 +2,12 @@
 
 R&D project. Stores bookmarks inside a web version of book or any html page.
 
+## Usage
+
+1. click on extension 
+2. click add
+3. click anywhere on the webpage to bookbark
+
 ## Quick Start
 
 1. Install dependencies:
