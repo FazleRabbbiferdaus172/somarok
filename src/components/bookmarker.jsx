@@ -4,14 +4,16 @@ import bookmarker from '@/assets/bookmark.svg'
 export default function Bookmarker(props) {
     const [color, setColor] = useState('red');
     const [canremove, setCanremove] = useState(false);
-    function handleRemoveSomarok(){
-
-            props.onRemove();
+    function handleRemoveSomarok(ev){
+      const location = window.location.href;
+      const cords = { xposition: ev.pageX, yposiiton: ev.pageY };
+      const values = { location: location, xposition: ev.pageX, yposiiton: ev.pageY };
+      props.onRemove();
         
     }
   return (
     <div className="somarok-bookmark" style={{position: 'absolute', top: props.yposition + 'px', left: props.xposition + 'px', zIndex: 1000, transform: 'translate(-25%, -50%)'}}
-      onClick={handleRemoveSomarok}
+      onClick={(ev) => handleRemoveSomarok(ev)}
     >
         <img src={bookmarker} className="logo" alt="Vite logo" style={{'color': color}} width="100" height="100"/>
     </div>
