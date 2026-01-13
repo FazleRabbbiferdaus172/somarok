@@ -5,8 +5,10 @@ export default function App() {
   const [bookmarkerState, setbookmarkerList] = useState([]);
   const [somarokState, setSomarokState] = useState(0);
 
-  function handleRemoveBookmark(xposition, yposiiton, location) {
+  async function handleRemoveBookmark(xposition, yposiiton, location) {
     console.log("Removing bookmark at ", xposition, yposiiton, location);
+      const storageKey_location = window.location.href;
+      const location_somarok = await chrome.storage.local.get([storageKey_location]);
   }
 
   useEffect(() => {
