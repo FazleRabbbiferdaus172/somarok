@@ -1,23 +1,23 @@
-import { createRoot, StrictMode } from 'react-dom/client'
+import { createRoot } from 'react-dom/client'
 import App from '@/content/views/App.jsx'
 
 let operation = null;
 
-const messageListener = (message, sender, sendResponse) => {
-  if (message.type === "SetAdd") {
-    operation = 'add';
-    document.addEventListener("click", async function (ev) {
+async function onOperation(ev) {
       const location = window.location.href;
-      const cords = { xposition: ev.pageX, yposiiton: ev.pageY };
-      const values = { location: location, xposition: ev.pageX, yposiiton: ev.pageY };
+      const cords = { xposition: ev.pageX, yposition: ev.pageY };
       if (operation === 'add') {
-        await chrome.storage.local.set({ bookmark1: values });
         const current_somarok = await chrome.storage.local.get([location]);
         current_somarok[location] = current_somarok[location] || [];
         current_somarok[location].push(cords);
         await chrome.storage.local.set({ [location]: current_somarok[location] });
       }
-    })
+    }
+
+
+const messageListener = (message, sender, sendResponse) => {
+  if (message.type === "SetAdd") {
+    operation = 'add';
   }
   else if (message.type === "SetRemove") {
     operation = 'remove';
@@ -28,7 +28,8 @@ chrome.runtime.onMessage.addListener(messageListener);
 
 const container = document.createElement('div')
 container.id = 'somarok-extension-container'
-document.body.appendChild(container)
+document.body.appendChild(container);
+document.addEventListener("click", onOperation); 
 
 createRoot(container).render(
   <App />

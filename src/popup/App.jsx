@@ -5,6 +5,7 @@ import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import BookmarkRemoveIcon from '@mui/icons-material/BookmarkRemove';
+import { getTab } from '../utils/tab_utils';
 
 function App() {
   const [isBookMarkAddActive, setIsBookMarkAddActive] = useState(false);
@@ -13,12 +14,6 @@ function App() {
 
   function toggleBookmarkAdd() {
     setIsBookMarkAddActive(!isBookMarkAddActive);
-  }
-
-  async function getTab() {
-    let queryOptions = { active: true, currentWindow: true };
-    let [tab] = await chrome.tabs.query(queryOptions);
-    return tab;
   }
 
   async function sendSetAddMessage(operation) {
@@ -57,28 +52,28 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    const getDataFromStorage = async function () {
-      let allBookmarks = [];
-      let bookmarkerList = [];
-      const storageKey = "bookmark1";
-      const result = await chrome.storage.local.get([storageKey]);
-      if (result[storageKey] === undefined) {
-        allBookmarks = [];
-      } else {
-        allBookmarks.push(result[storageKey]);
-      }
-      allBookmarks.forEach((bookmark) => {
-        // Todo: fix "yposiiton" typo issue later
-        if (window.location.href === bookmark.location) {
-          bookmarkerList.push(<li> {bookmark.location} - {bookmark.xposition} - {bookmark.yposiiton}</li>);
-        }
-      }
-      );
-      setbookmarkerList(bookmarkerList)
-    }
-    getDataFromStorage(bookmarkerState);
-  }, []);
+  // useEffect(() => {
+  //   const getDataFromStorage = async function () {
+  //     let allBookmarks = [];
+  //     let bookmarkerList = [];
+  //     const storageKey = "bookmark1";
+  //     const result = await chrome.storage.local.get([storageKey]);
+  //     if (result[storageKey] === undefined) {
+  //       allBookmarks = [];
+  //     } else {
+  //       allBookmarks.push(result[storageKey]);
+  //     }
+  //     allBookmarks.forEach((bookmark) => {
+  //       // Todo: fix "yposition" typo issue later
+  //       if (window.location.href === bookmark.location) {
+  //         bookmarkerList.push(<li> {bookmark.location} - {bookmark.xposition} - {bookmark.yposition}</li>);
+  //       }
+  //     }
+  //     );
+  //     setbookmarkerList(bookmarkerList)
+  //   }
+  //   getDataFromStorage(bookmarkerState);
+  // }, []);
 
   return (
     <Container fixed>
