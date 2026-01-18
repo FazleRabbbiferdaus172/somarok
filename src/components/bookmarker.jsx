@@ -5,10 +5,7 @@ export default function Bookmarker(props) {
     const [color, setColor] = useState('red');
     const [canremove, setCanremove] = useState(false);
     function handleRemoveSomarok(ev){
-      const location = window.location.href;
-      const cords = { xposition: ev.pageX, yposiiton: ev.pageY };
-      const values = { location: location, xposition: ev.pageX, yposiiton: ev.pageY };
-      props.onRemove();
+      props.onRemove(props.xposition, props.yposition, props.location);
         
     }
   return (

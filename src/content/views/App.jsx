@@ -7,8 +7,10 @@ export default function App() {
 
   async function handleRemoveBookmark(xposition, yposiiton, location) {
     console.log("Removing bookmark at ", xposition, yposiiton, location);
-      const storageKey_location = window.location.href;
-      const location_somarok = await chrome.storage.local.get([storageKey_location]);
+    const storageKey_location = location || window.location.href;
+    const location_somarok = await chrome.storage.local.get([storageKey_location]);
+    const allBookmarks = location_somarok[storageKey_location].filter(bookmark => !(bookmark.xposition === xposition && bookmark.yposiiton === yposiiton));
+    await chrome.storage.local.set({[storageKey_location]: allBookmarks });
   }
 
   useEffect(() => {
@@ -20,16 +22,16 @@ export default function App() {
       const storageKey_location = window.location.href;
       const location_somarok = await chrome.storage.local.get([storageKey_location]);
       console.log("Location somarok: ", location_somarok);
-      if (result[storageKey] === undefined) {
+      if (location_somarok[storageKey_location] === undefined) {
         allBookmarks = [];
       } else {
-        allBookmarks.push(result[storageKey]);
+        allBookmarks = location_somarok[storageKey_location];
       }
       allBookmarks.forEach((bookmark) => {
         // Todo: fix "yposiiton" typo issue later
-        if (window.location.href === bookmark.location) {
-          bookmarkerList.push(<Bookmarker key={bookmark.xposition} xposition={bookmark.xposition} yposition={bookmark.yposiiton} location={bookmark.location} onRemove={handleRemoveBookmark} />);
-        }
+        // if (window.location.href === bookmark.location) {
+        bookmarkerList.push(<Bookmarker key={bookmark.xposition} xposition={bookmark.xposition} yposition={bookmark.yposiiton} location={storageKey_location} onRemove={handleRemoveBookmark} />);
+        // }
       }
       );
       setbookmarkerList(bookmarkerList)
@@ -39,7 +41,8 @@ export default function App() {
 
   useEffect(() => {
     const handleStorageChange = (changes, area) => {
-      if (area === 'local' && changes.bookmark1) {
+      const storageKey_location = window.location.href;
+      if (area === 'local' && changes[storageKey_location]) {
         // changes.bookmark1.newValue contains the data you just saved
         setSomarokState(prev => prev + 1);
       }
