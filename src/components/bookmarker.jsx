@@ -3,7 +3,6 @@ import bookmarker from '@/assets/bookmark.svg'
 
 export default function Bookmarker(props) {
     const [color, setColor] = useState('red');
-    const [canremove, setCanremove] = useState(false);
     function handleRemoveSomarok(ev){
       props.onRemove(props.xposition, props.yposition, props.location);
         
