@@ -52,29 +52,6 @@ function App() {
     }
   }
 
-  // useEffect(() => {
-  //   const getDataFromStorage = async function () {
-  //     let allBookmarks = [];
-  //     let bookmarkerList = [];
-  //     const storageKey = "bookmark1";
-  //     const result = await chrome.storage.local.get([storageKey]);
-  //     if (result[storageKey] === undefined) {
-  //       allBookmarks = [];
-  //     } else {
-  //       allBookmarks.push(result[storageKey]);
-  //     }
-  //     allBookmarks.forEach((bookmark) => {
-  //       // Todo: fix "yposition" typo issue later
-  //       if (window.location.href === bookmark.location) {
-  //         bookmarkerList.push(<li> {bookmark.location} - {bookmark.xposition} - {bookmark.yposition}</li>);
-  //       }
-  //     }
-  //     );
-  //     setbookmarkerList(bookmarkerList)
-  //   }
-  //   getDataFromStorage(bookmarkerState);
-  // }, []);
-
   return (
     <Container fixed>
       <Box sx={{ bgcolor: '#cfe8fc', height: '10vh', weidth: '2vw' }}>
@@ -86,11 +63,6 @@ function App() {
             <BookmarkRemoveIcon />
           </div>
         </IconButton>
-      </Box>
-      <Box sx={{ bgcolor: '#90c9f8ff', weidth: '2vw' }}>
-        <ul>
-          {bookmarkerState}
-        </ul>
       </Box>
     </Container>
   )
