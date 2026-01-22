@@ -28,6 +28,8 @@ npm run dev
 
 ```bash
 npm run build
+
+## install extension
 ```
 
 ## Project Structure
