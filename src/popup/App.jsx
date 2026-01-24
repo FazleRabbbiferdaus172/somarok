@@ -10,7 +10,6 @@ import { getTab } from '../utils/tab_utils';
 function App() {
   const [isBookMarkAddActive, setIsBookMarkAddActive] = useState(false);
   const [isBookMarkRemoveActive, setIsBookMarkRemoveActive] = useState(false);
-  const [bookmarkerState, setbookmarkerList] = useState([]);
 
   function toggleBookmarkAdd() {
     setIsBookMarkAddActive(!isBookMarkAddActive);
