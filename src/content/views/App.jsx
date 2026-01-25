@@ -6,7 +6,6 @@ export default function App() {
   const [somarokState, setSomarokState] = useState(0);
 
   async function handleRemoveBookmark(xposition, yposition, location) {
-    console.log("Removing bookmark at ", xposition, yposition, location);
     const storageKey_location = location || window.location.href;
     const location_somarok = await chrome.storage.local.get([storageKey_location]);
     const allBookmarks = location_somarok[storageKey_location].filter(bookmark => !(bookmark.xposition === xposition && bookmark.yposition === yposition));
